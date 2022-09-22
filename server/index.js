@@ -1,8 +1,9 @@
 import express from "express";
 import config from "./config.js";
+import morgan from "morgan";
+
 import indexRoutes from "./routes/index.routes.js";
 import tasksRoutes from "./routes/tasks.routes.js";
-import morgan from "morgan";
 
 const app = express();
 
