@@ -6,10 +6,12 @@ import NotFound from "./pages/404NotFound";
 
 import NavBar from "./components/NavBar";
 
+import TaskProvider from "./context/TasksContext";
+
 function App() {
   return (
     <div className="App">
-      <>
+      <TaskProvider>
         <NavBar />
         <Routes>
           <Route path="/" exact element={<TasksPage />} />
@@ -17,7 +19,7 @@ function App() {
           <Route path="/tasks/new" element={<TasksForm />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </>
+      </TaskProvider>
     </div>
   );
 }

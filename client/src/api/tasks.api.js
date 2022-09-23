@@ -6,7 +6,7 @@ const createTaskRequest = async (task) => {
 };
 
 const getTasksRequest = async () => {
-  const response = await axios.get("/api/tasks");
+  const response = await axios.get("http://localhost:4000/api/tasks");
   return response.data;
 };
 
@@ -21,7 +21,7 @@ const updateTaskRequest = async (task) => {
 };
 
 const deleteTaskRequest = async (id) => {
-  const response = await axios.delete(`/api/tasks/${id}`);
+  const response = await axios.delete(`http://localhost:4000/api/tasks/${id}`);
   return response.data;
 };
 

@@ -8,7 +8,7 @@ const getTasks = async (req, res) => {
     if (rows.length > 0) {
       res.status(200).json(rows);
     } else {
-      res.status(404).json({
+      res.json({
         message: "No tasks found",
       });
     }
