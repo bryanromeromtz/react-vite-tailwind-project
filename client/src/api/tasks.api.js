@@ -28,10 +28,18 @@ const deleteTaskRequest = async (id) => {
   return response.data;
 };
 
+const toggleTaskDoneRequest = async (id, done) => {
+  const response = await axios.put(`http://localhost:4000/api/tasks/${id}`, {
+    done,
+  });
+  return response.data;
+};
+
 export {
   createTaskRequest,
   getTasksRequest,
   getTaskByIdRequest,
   updateTaskRequest,
   deleteTaskRequest,
+  toggleTaskDoneRequest,
 };
