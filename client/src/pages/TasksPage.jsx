@@ -1,23 +1,12 @@
 import React from "react";
-import { useEffect, useState, useContext } from "react";
+import { useEffect } from "react";
 
-import { getTasksRequest } from "../api/tasks.api.js";
 import TaskCard from "../components/TaskCard.jsx";
+import { useTasks } from "../context/TasksContext.jsx";
 
 function TasksPage() {
-  const [tasks, setTasks] = useState([]);
-
+  const { tasks, loadTasks } = useTasks();
   useEffect(() => {
-    console.log(text);
-    async function loadTasks() {
-      try {
-        const res = await getTasksRequest();
-        setTasks(res);
-        console.log(res);
-      } catch (error) {
-        console.log(error);
-      }
-    }
     loadTasks();
   }, []);
   function renderTasks() {

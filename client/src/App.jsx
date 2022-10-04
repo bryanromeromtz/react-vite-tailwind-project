@@ -6,7 +6,7 @@ import NotFound from "./pages/404NotFound";
 
 import NavBar from "./components/NavBar";
 
-import TaskProvider from "./context/TasksContext";
+import { TaskProvider } from "./context/TasksContext";
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
           <Route path="/" exact element={<TasksPage />} />
           <Route path="/tasks" element={<TasksPage />} />
           <Route path="/tasks/new" element={<TasksForm />} />
+          <Route path="/tasks/edit/:id" element={<TasksForm />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </TaskProvider>

@@ -47,9 +47,12 @@ const createTask = async (req, res) => {
     if (rows.affectedRows === 1) {
       res.status(201).json({
         message: "Task created successfully",
-        id: rows.insertId,
         body: {
-          task: { title, description },
+          task: {
+            id: rows.insertId,
+            title,
+            description,
+          },
         },
       });
     } else {

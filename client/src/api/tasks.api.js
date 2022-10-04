@@ -11,12 +11,15 @@ const getTasksRequest = async () => {
 };
 
 const getTaskByIdRequest = async (id) => {
-  const response = await axios.get(`/api/tasks/${id}`);
+  const response = await axios.get(`http://localhost:4000/api/tasks/${id}`);
   return response.data;
 };
 
-const updateTaskRequest = async (task) => {
-  const response = await axios.put(`/api/tasks/${task.id}`, task);
+const updateTaskRequest = async (id, task) => {
+  const response = await axios.put(
+    `http://localhost:4000/api/tasks/${id}`,
+    task
+  );
   return response.data;
 };
 

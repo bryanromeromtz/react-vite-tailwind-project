@@ -1,19 +1,39 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import {
-  getTasksRequest,
-  getTaskByIdRequest,
-  createTaskRequest,
-  updateTaskRequest,
-  deleteTaskRequest,
-} from "../api/tasks.api.js";
+import { useTasks } from "../context/TasksContext.jsx";
+import { useParams } from "react-router-dom";
 
 function TasksForm() {
+  const { createTask, getTask, updateTask } = useTasks();
+  const [task, setTask] = useState({
+    title: "",
+    description: "",
+  });
+  const params = useParams();
+
+  useEffect(() => {
+    console.log(params.id);
+    const loadTask = async () => {
+      if (params.id) {
+        const task = await getTask(params.id);
+        setTask({
+          title: task.title,
+          description: task.description,
+        });
+      } else {
+        console.log("no hay id");
+      }
+    };
+    loadTask();
+  }, []);
+
   return (
     <div>
-      <h1>Tasks Form</h1>
+      <h1>{params.id ? "Edit Task" : "Create Task"}</h1>
       <Formik
-        initialValues={{ title: "", description: "" }}
+        initialValues={task}
+        enableReinitialize={true}
         validate={(values) => {
           const errors = {};
           if (!values.title || values.title.length < 3) {
@@ -24,13 +44,14 @@ function TasksForm() {
           return errors;
         }}
         onSubmit={async (values, actions) => {
-          try {
-            const res = await createTaskRequest(values);
-            actions.resetForm();
-            console.log(res);
-          } catch (error) {
-            console.log(error);
+          if (params.id) {
+            console.log("editando");
+            await updateTask(params.id, values);
+          } else {
+            console.log("creando");
+            await createTask(values);
           }
+          actions.resetForm();
         }}
       >
         {({ handleChange, values, isSubmitting }) => (
@@ -53,9 +74,15 @@ function TasksForm() {
               value={values.description}
             />
             <ErrorMessage name="description" component="div" />
-            <button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Loading..." : "Submit"}
-            </button>
+            {params.id ? (
+              <button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Loading..." : "Edit Task"}
+              </button>
+            ) : (
+              <button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Loading..." : "Create Task"}
+              </button>
+            )}
           </Form>
         )}
       </Formik>
