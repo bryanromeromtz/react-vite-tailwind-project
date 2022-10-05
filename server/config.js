@@ -8,4 +8,5 @@ export default {
   DB_USERNAME: process.env.DB_USERNAME || "root",
   DB_PASSWORD: process.env.DB_PASSWORD || "147258nf3",
   DB_DATABASE: process.env.DB_DATABASE || "tasks_db",
+  DB_PORT: process.env.DB_PORT || 3306,
 };
