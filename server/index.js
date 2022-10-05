@@ -20,9 +20,9 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 // Routes
+app.use(express.static(join(__dirname, "../client/dist")));
 app.use(indexRoutes);
 app.use("/api", tasksRoutes);
-app.use(express.static(join(__dirname, "../client/dist")));
 
 app.listen(config.PORT, () => {
   console.log(`Server running on port ${config.PORT}`);
