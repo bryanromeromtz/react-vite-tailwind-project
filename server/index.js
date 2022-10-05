@@ -11,8 +11,8 @@ import tasksRoutes from "./routes/tasks.routes.js";
 const app = express();
 
 // Settings
-const __dirname = dirname(fileURLToPath(import.meta.url));
 app.set("port", config.PORT);
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Middlewares
 app.use(cors());
