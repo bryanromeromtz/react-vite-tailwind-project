@@ -7,6 +7,8 @@ import { useTasks } from "../context/TasksContext.jsx";
 function TaskCard({ task }) {
   const { deleteTask, toggleTaskDone } = useTasks();
   const navigate = useNavigate();
+  // format date
+  const date = new Date(task.created_at);
   const handleDone = async () => {
     await toggleTaskDone(task.id);
   };
@@ -21,7 +23,7 @@ function TaskCard({ task }) {
       <p className="text-gray-900">
         <span className="font-bold">Description:</span> {task.description}
       </p>
-      <span className="text-red-500">{task.created_at}</span>
+      <span className="text-red-500">{date.toLocaleString()}</span>
       {/* buttons */}
       <div className="flex mt-4 py-4 border-t border-gray-300">
         <button
