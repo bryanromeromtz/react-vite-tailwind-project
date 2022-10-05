@@ -12,7 +12,6 @@ const app = express();
 
 // Settings
 const __dirname = dirname(fileURLToPath(import.meta.url));
-console.log("dirname: ", __dirname);
 app.set("port", config.PORT);
 
 // Middlewares
