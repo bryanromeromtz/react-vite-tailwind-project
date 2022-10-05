@@ -5,7 +5,7 @@ import cors from "cors";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 
-import indexRoutes from "./routes/index.routes.js";
+// import indexRoutes from "./routes/index.routes.js";
 import tasksRoutes from "./routes/tasks.routes.js";
 
 const app = express();
@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 // Routes
-app.use(indexRoutes);
+// app.use(indexRoutes);
 app.use("/api", tasksRoutes);
 app.use(express.static(join(__dirname, "../client/dist")));
 console.log(config.PORT);
