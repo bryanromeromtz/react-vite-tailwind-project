@@ -11,8 +11,8 @@ import tasksRoutes from "./routes/tasks.routes.js";
 const app = express();
 
 // Settings
-app.set("port", config.PORT);
 const __dirname = dirname(fileURLToPath(import.meta.url));
+app.set("port", config.PORT);
 
 // Middlewares
 app.use(cors());
@@ -20,9 +20,10 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 // Routes
-app.use(express.static(join(__dirname, "../client/dist")));
 app.use(indexRoutes);
 app.use("/api", tasksRoutes);
+app.use(express.static(join(__dirname, "../client/dist")));
+console.log(config.PORT);
 
 app.listen(config.PORT, () => {
   console.log(`Server running on port ${config.PORT}`);
