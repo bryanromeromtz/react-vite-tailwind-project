@@ -41,10 +41,12 @@ const TaskProvider = ({ children }) => {
 
   async function createTask(task) {
     try {
+      task.done = 0;
       const res = await createTaskRequest(task);
-      // setTasks([...tasks, res.body.task]); // esto añade el nuevo task al final de la lista de tasks que ya existen en el estado
-      console.log(tasks);
+      setTasks([...tasks, res.body.task]); // esto añade el nuevo task al final de la lista de tasks que ya existen en el estado
+      console.log(res);
     } catch (error) {
+      console.log(task);
       console.log(error);
     }
   }

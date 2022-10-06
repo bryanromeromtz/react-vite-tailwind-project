@@ -41,7 +41,7 @@ const createTask = async (req, res) => {
   try {
     const { title, description } = req.body;
     const [rows] = await pool.query(
-      "INSERT INTO tasks (title, description) VALUES (?, ?)",
+      "INSERT INTO tasks (title, description, done) VALUES (?, ?, 0)",
       [title, description]
     );
     if (rows.affectedRows === 1) {
